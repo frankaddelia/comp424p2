@@ -6,7 +6,7 @@ if (isset($_POST['login'])) {
     //$register = register($_POST['uname'], $_POST['pass']);
     $register = true;
     $uname = $_POST['uname'];
-    $pass = hash("sha256", $_POST['pass']);
+    $pass = password_hash($_POST['pass'])
     header("location: index.php");
     if ($register) {
         //header("location: index.php");
