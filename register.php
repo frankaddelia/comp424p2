@@ -15,7 +15,7 @@ function register($user, $pass) {
     if ($result == null) {
         
     } else {
-        if ($result[1] == $user && $result[2] == hash("sha256", $pass)) {
+        if ($result[1] == $user && $result[2] == $pass) {
             mysqli_close($link);
             return true;
         }

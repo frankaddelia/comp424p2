@@ -3,10 +3,10 @@
 if (isset($_POST['login'])) {
     define("TOP_SECRET", "SO SECRET");
     require("register.php");
-    //$register = register($_POST['uname'], $_POST['pass']);
-    $register = true;
     $uname = $_POST['uname'];
-    $pass = hash("sha256", $_POST['pass']);
+    $pass = crypt($_POST['pass'], "$2a$Ofdh8wa3fh3IHJLf38fh3f32fhezgr83QB");
+    //$register = register($uname, $pass);
+    $register = true;
     header("location: index.php");
     if ($register) {
         //header("location: index.php");
