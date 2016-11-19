@@ -9,8 +9,6 @@ if (isset($_POST['login'])) {
     $pass = hash("sha256", $_POST['pass']);
     header("location: index.php");
     if ($register) {
-        echo "<p>username: $uname</p>";
-        echo "<p>pass: $pass</p>";
         //header("location: index.php");
     }
 }
