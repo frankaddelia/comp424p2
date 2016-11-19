@@ -17,37 +17,6 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <style type="text/css">
-      
-      /* priority */
-      .extremely-high {
-          background-color: #ff0000;
-          color: #fff;
-      }
-      
-      .high {
-          background-color: #ff0;
-      }
-
-      .medium {
-          background-color: orange;
-      }
-      
-      .normal {
-          background-color: #f0ad4e;
-      }
-
-      /* other codes */
-      .completed {
-          background-color: #33ff33;
-      }
-
-      .incomplete {
-          background-color: #0033bb;
-      }
-
-      .past-due {
-          background-color: #ff8888;
-      }
 
       #spinner {
           width: 100%;
