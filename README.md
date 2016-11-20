@@ -2,7 +2,7 @@
 
  - Login system
  - Lamp stack 16.04 LTS
- - instellation script
+ - installation script
 
 login page that returns the number of times you've logged in and last log in date
 

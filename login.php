@@ -40,14 +40,20 @@ if(isset($_POST['new'])) {
 
   <body>
 
-    <form action="" name="login" method="post">
-
-      <p>Username: <input type="text" id="uname" name="uname" /></p>
-      <p>Password: <input type="password" name="pass" /></p>
-      <p><input type="submit" name="login" value="Login" /></p>
-      <p><input type="submit" name="new" value="New User" /></p>
-
+    <form action="" name="login" method="post" class="form-signin">
+      <h2 class="form-signin-heading">Please sign in</h2>
+      <label for="uname" class="sr-only">Username</label>
+      <input type="email" id="uname" name="uname" class="form-control" placeholder="Username" required autofocus /></p>
+      <p><label for="pass" class="sr-only">Password</label> <input type="password" class="form-control" name="pass" placeholder="Password" required /></p>
+      <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+      <p><button class="btn btn-lg btn-primary btn-block" type="submit" name="login">Login</button></p>
+      <p><button class="btn btn-lg btn-block" type="submit" name="new"/>Register</button></p>
     </form>
+    <!-- On fail suggest password reset -->
 
   </body>
 </html>
