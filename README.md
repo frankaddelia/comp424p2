@@ -15,8 +15,22 @@ Logging in a way that is meaningful to a security admin
 Username and password reset system
 
 Defend against attacks:
-1. Brute Force
-2. SQL injection
-3. Buffer overflow
-4. XSS
-5. CSRF
+- [ ] Brute Force
+- [ ] SQL injection
+- [ ] Buffer overflow
+- [ ] XSS
+- [ ] CSRF
+
+Project Phase 2 Rubric: 5% Code Review Analysis and 12% Implementation (and report), 3% Presentation and Demo.
+
+In your presentation (as well as your report) you should give a quick overview of your implementation. What works and what does not work. You should also include your design choices (for security) and support your decisions compared to alternatives. 
+
+Time breakdown (per group):
+ - Presentation: 7 minutes
+ - Demo: 3 minutes
+
+You *must* ensure your presentation will not exceed 10 minutes, so time it wisely.
+
+Note that not all members need to be part of the presentation team. 
+
+All presentations will take place on the second part of the lecture on Nov. 29th.
