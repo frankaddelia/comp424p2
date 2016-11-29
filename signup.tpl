@@ -73,14 +73,14 @@
         <div class="form-group">
           <label for="email" class="col-sm-2 control-label">Email</label>
           <div class="col-sm-4">
-            <input type="email" name="email" class="form-control" maxlength="128" id="email" placeholder="Email">
+            <input type="email" name="email" class="form-control" maxlength="100" id="email" placeholder="Email">
           </div>
         </div>
         
         <div class="form-group">
           <label for="password" class="col-sm-2 control-label">Password</label>
           <div class="col-sm-4">
-            <input type="password" name="password" class="form-control" maxlength="128" id="password" placeholder="Password">
+            <input type="password" name="password" class="form-control" maxlength="72" id="password" placeholder="Password">
           </div>
         </div>
         

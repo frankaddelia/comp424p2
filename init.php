@@ -7,8 +7,8 @@ if(!DEFINED("TOP_SECRET"))
 }
 
 $db_host    = "localhost";
-$db         = "NOT SET";
-$db_user    = "NOT SET";
-$db_pass    = "NOT SET";
+$db_name    = "comp424proj2";
+$db_user    = "root";
+$db_pass    = "root";
     
 ?>
