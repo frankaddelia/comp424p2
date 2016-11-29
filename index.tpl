@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <title>Todo List</title>
+    <title>Home</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -60,7 +60,6 @@
         
         <div class="col-md-8">
             <h1><a href="index.php">Project 2</a></h1>  
-            &lt;nav&gt;
         </div>
         
         <div class="col-md-2"></div>
@@ -72,18 +71,10 @@
         <div class="col-md-2"></div>
         
         <div class="col-md-8">
-            <?php #if(count($tasks) == 0): ?>
 
-            <?php if(true): ?>
+            <p>Hi <?php echo $result['fullname']; ?>, You have logged in <?php echo $result['numlogins']; ?> times and Last login <?php echo $last_login; ?></p>
+            <p><a href="company_confidential_file.txt" target="_blank">Click here to download a copy of company_confidential_file.txt</a></p>
 
-            <p>Hi &lt;user&gt;, You have logged in &lt;x&gt; times and Last login &lt;date&gt;</p>
-            <p><a href="">Click here to download a confidential file</a></p>
-
-            <?php else: ?>
-
-            &lt;error&gt;
-
-            <?php endif; ?>
         </div>
         
         <div class="col-md-2"></div>
