@@ -16,8 +16,8 @@ Username and password reset system
 
 Defend against attacks:
 - [ ] Brute Force
-- [ ] SQL injection
-- [ ] Buffer overflow
+- [X] SQL injection
+- [X] Buffer overflow
 - [ ] XSS
 - [ ] CSRF
 
