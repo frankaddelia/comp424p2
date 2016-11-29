@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <title>Todo List</title>
+    <title>Project 2</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -72,8 +72,6 @@
         <div class="col-md-2"></div>
         
         <div class="col-md-8">
-            <?php #if(count($tasks) == 0): ?>
-
             <?php if(true): ?>
 
             <p>Hi &lt;user&gt;, You have logged in &lt;x&gt; times and Last login &lt;date&gt;</p>

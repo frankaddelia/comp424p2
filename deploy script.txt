@@ -1,0 +1,22 @@
+
+sudo yum update
+sudo yum install -y httpd24 php56 php56-mysqlnd
+sudo service httpd start
+sudo chkconfig httpd on
+sudo groupadd www
+sudo usermod -a -G www ec2-user
+sudo chown -R root:www /var/www
+sudo chmod 2775 /var/www
+find /var/www -type d -exec sudo chmod 2775 {} \;
+find /var/www -type f -exec sudo chmod 0664 {} \;
+sudo yum install mysql55-server php56-mysqlnd
+sudo service mysqld start
+sudo mysql_secure_installation
+sudo yum install git-core
+git config --global user.name "Server"
+git config --global user.email "server@server.com"
+sudo mkdir /var/www/.ssh
+sudo su chown -R ec2-user:www /var/www/.ssh/
+sudo su -Hu ec2-user ssh-keygen -t rsa
+sudo su cat /var/www/.ssh/id_rsa.pub
+sudo su -Hu ec2-user git clone git@github.com:yourUsername/yourApp.git /var/www/html
