@@ -1,5 +1,6 @@
 <?php
 
+DEFINE("TOP_SECRET", "Very secret");
 require("init.php");
 
 if (isset($_POST['submit'])) {
@@ -42,8 +43,6 @@ if (isset($_POST['submit'])) {
             echo 'You are not a user in our system. <a href="signup.php">Click here to sign up.</a>';
         }   
         
-        print_r($result);
-        
         #if user, send to index.php
         if ($result['email'] == $email) {
 
@@ -65,7 +64,6 @@ if (isset($_POST['submit'])) {
                 #last_login='" . $result['current_login'] . "', current_login=" . NOW() 
                 $result['numlogins']++;
                 $sth->bindParam(':numlogins', $result['numlogins']);
-                echo "here";
                 $sth->bindParam(':last_login', $last_login);
 
                 $sth->execute();
@@ -77,7 +75,7 @@ if (isset($_POST['submit'])) {
             #send to home page
             header("Location: index.php");
         } else {
-            echo "User name and/or password incorrect. Try again. email=$email, pass=$pass";
+            echo "User name and/or password incorrect. Try again.";
         }
     } catch (PDOException $e) {
         echo $e->getMessage();

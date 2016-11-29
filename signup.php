@@ -1,5 +1,5 @@
 <?php
-
+DEFINE("TOP_SECRET", "Very secret");
 // Original PHP code by Chirp Internet: www.chirp.com.au
 // Please acknowledge use of this code by including this header.
 require("init.php");
