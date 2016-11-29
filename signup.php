@@ -1,10 +1,13 @@
 <?php
 
+// Original PHP code by Chirp Internet: www.chirp.com.au
+// Please acknowledge use of this code by including this header.
+require("init.php");
+
 $dbh = "not set";
 
 try {
-    #$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
-    $dbh = new PDO("mysql:host=localhost;dbname=comp424proj2", "root", "root");
+    $dbh = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo $e->getMessage();
@@ -37,9 +40,14 @@ if (!empty($_POST['submit'])) {
     $dbh = new PDO("mysql:host=localhost;dbname=comp424proj2", "root", "root");
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //insert stuff into database
+    
+    //hash options
+    $options = ['cost' => 11, 
+            'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)];
+    
     $form_info = array(
         "email"     => trim($_POST['email']),
-        "pass"      => trim(crypt($_POST['pass'], "$2a$Ofdh8wa3fh3IHJLf38fh3f32fhezgr83QB")),
+        "pass"      => password_hash($_POST['password'], PASSWORD_BCRYPT, $options),
         "firstname" => trim($_POST['firstname']),
         "lastname"  => trim($_POST['lastname']),
         "month"     => trim($_POST['month']),
@@ -53,7 +61,18 @@ if (!empty($_POST['submit'])) {
         "answer3"   => trim($_POST['answer3'])
     );
     
+    if(!password_verify($_POST['password'], $form_info['pass'])) {
+        echo "Password Incorrect.<br>";
+        exit;
+    } 
+    
     try {
+        
+        if(!$form_info) { 
+            echo "Something wrong with the hash";
+            exit;
+        }
+        
         #create user
         $sth = $dbh->prepare("INSERT INTO users (email, pass) values (:email, :pass)");
         $sth->bindParam(':email', $email);

@@ -1,59 +1,90 @@
 <?php
 
-if (isset($_POST['login'])) {
-    define("TOP_SECRET", "SO SECRET");
-    require("register.php");
-    $uname = $_POST['uname'];
-    $pass = crypt($_POST['pass'], "$2a$Ofdh8wa3fh3IHJLf38fh3f32fhezgr83QB");
-    //$register = register($uname, $pass);
-    $register = true;
-    header("location: index.php");
-    if ($register) {
-        //header("location: index.php");
+require("init.php");
+
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $pass = $_POST['pass'];
+    $dbh = "not set";
+
+    try {
+        $dbh = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
     }
+
+    if (!dbh) {
+        echo "Not connecting.";
+        exit(0);
+    }
+
+    #select user in database
+    try {
+        $query = $dbh->query("SELECT users.uid, users.email, users.pass, user_info.numlogins, user_info.current_login "
+                . "FROM users "
+                . "LEFT JOIN user_info "
+                . "ON user_info.uid=users.uid "
+                . "WHERE users.email='$email'"
+        );
+
+        if (!$query) {
+            echo "<p>Query failed.</p>";
+            exit(1);
+        }
+
+        #change the fetch mode for query
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $query->fetch();
+
+        #if not user, let them know
+        if (!$result) {
+            echo 'You are not a user in our system. <a href="signup.php">Click here to sign up.</a>';
+        }   
+        
+        print_r($result);
+        
+        #if user, send to index.php
+        if ($result['email'] == $email) {
+
+            if(!password_verify($pass, $result['pass'])) {
+                echo "<p>Incorrect password</p>";
+                exit;
+            }
+            
+            #update number of logins
+            #get last login BEFORE updating last login to the current date! (Since we would care more about the time before the most recent!)
+            try {
+
+                #select user's current info
+                
+                $sth = $dbh->prepare("UPDATE user_info "
+                        . "SET numlogins=:numlogins, last_login=:last_login, current_login=NOW() "
+                        . "WHERE uid='" . $result['uid'] . "'"
+                );
+                #last_login='" . $result['current_login'] . "', current_login=" . NOW() 
+                $result['numlogins']++;
+                $sth->bindParam(':numlogins', $result['numlogins']);
+                echo "here";
+                $sth->bindParam(':last_login', $last_login);
+
+                $sth->execute();
+                
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+
+            #send to home page
+            header("Location: index.php");
+        } else {
+            echo "User name and/or password incorrect. Try again. email=$email, pass=$pass";
+        }
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+
+    #close connection
+    $dbh = null;
 }
 
-if(isset($_POST['new'])) {
-    header("location: index.php");
-}
-?>
-
-<!doctype html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-
-    <title>Login</title>
-
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#uname").focus();
-        });
-    </script>
-
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
-
-    <form action="" name="login" method="post" class="form-signin">
-      <h2 class="form-signin-heading">Please sign in</h2>
-      <label for="uname" class="sr-only">Username</label>
-      <input type="email" id="uname" name="uname" class="form-control" placeholder="Username" required autofocus /></p>
-      <p><label for="pass" class="sr-only">Password</label> <input type="password" class="form-control" name="pass" placeholder="Password" required /></p>
-      <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-      <p><button class="btn btn-lg btn-primary btn-block" type="submit" name="login">Login</button></p>
-      <p><button class="btn btn-lg btn-block" type="submit" name="new"/>Register</button></p>
-    </form>
-    <!-- On fail suggest password reset -->
-
-  </body>
-</html>
+require("login.tpl");
