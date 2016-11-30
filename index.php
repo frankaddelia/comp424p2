@@ -1,5 +1,5 @@
 <?php
-
+require("login.tpl");
 DEFINE("TOP_SECRET", "Very secret");
 require("init.php");
 
@@ -87,4 +87,4 @@ if (isset($_POST['submit'])) {
     exit;
 }
 
-require("login.tpl");
+
