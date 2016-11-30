@@ -2,3 +2,27 @@
 #nav a {
   font-size: 160%;
 }
+/* priority */
+.very-important {
+  background-color: #ff0000;
+}
+.important {
+  background-color: #ff0;
+}
+.default {
+  background-color: #f0ad4e;
+}
+
+/* other codes */
+
+.completed {
+  background-color: #33ff33;
+}
+
+.incomplete {
+  background-color: #0033bb;
+}
+
+.past-due {
+  background-color: #ff8888;
+}
