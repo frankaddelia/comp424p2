@@ -5,7 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+<<<<<<< HEAD
     <title>Home</title>
+=======
+    <title>Project 2</title>
+>>>>>>> 2d5e633cd914b3d9ce7890d47618f51ca937a53d
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -71,9 +75,13 @@
         <div class="col-md-2"></div>
         
         <div class="col-md-8">
+<<<<<<< HEAD
 
             <p>Hi <?php echo $result['fullname']; ?>, You have logged in <?php echo $result['numlogins']; ?> times and Last login <?php echo $last_login; ?></p>
             <p><a href="company_confidential_file.txt" target="_blank">Click here to download a copy of company_confidential_file.txt</a></p>
+=======
+            <?php if(true): ?>
+>>>>>>> 2d5e633cd914b3d9ce7890d47618f51ca937a53d
 
         </div>
         
